@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Link test</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+	<script src="../link-to-inbox.js"></script>
+</head>
+<body>
+	<h1>Linked emails</h1>
+	<dl></dl>
+
+	<script>
+		var emails = [
+			'test@gmail.com',
+			'test@live.com',
+			'test@example.com'
+		];
+		var subjects = [
+			null,
+			'Welcome to ACME',
+		];
+		var senders = [
+			null,
+			'test@example.com',
+		];
+
+		$.each(emails, function(idx1, email){
+			$('dl').append('<h3>' + email + '</h3>')
+
+			$.each(subjects, function(idx2, subject){
+				$.each(senders, function(idx3, sender){
+					var filter = null;
+
+					if (subject || sender) {
+						filter = {};
+
+						if (subject) {
+							filter.subject = subject;
+						}
+
+						if (sender) {
+							filter.sender = sender;
+						}
+					}
+
+					$('dl')
+						.append('<dt>Filter: ' + JSON.stringify(filter) + '</dt>')
+						.append('<dd>Href: ' + linkToInbox.getHref(email, filter)
+							+ '<br>Link: ' + linkToInbox.createLink(email, filter)
+							+ '<br>Link (custom text): ' + linkToInbox.createLink(email, filter, false, 'In %s öffnen') + '</dd>');
+				});
+			});
+		});
+	</script>
+</body>
+</html>
