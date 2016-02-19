@@ -1,4 +1,18 @@
-var linkToInbox = (function(){
+(function (root, factory) {
+	if (typeof define === 'function' && define.amd) {
+		// AMD. Register as an anonymous module.
+		define([], factory);
+	} else if (typeof module === 'object' && module.exports) {
+		// Node. Does not work with strict CommonJS, but
+		// only CommonJS-like environments that support module.exports,
+		// like Node.
+		module.exports = factory();
+	} else {
+		// Browser globals (root is window)
+		root.linkToInbox = factory();
+	}
+}(this, function () {
+
 	var createLink = function(email, filter, onlyMatched, text){
 		text = text || 'Check your %s inbox';
 		var spec = getSpec(email, filter, onlyMatched);
@@ -28,6 +42,7 @@ var linkToInbox = (function(){
 	var getSpec = function(email, filter, onlyMatched){
 		var matched = true;
 		var domain = email.split('@')[1];
+		var parsedFilters = null;
 
 		var spec = {
 			name: domain,
@@ -37,12 +52,14 @@ var linkToInbox = (function(){
 		};
 
 		if (filter) {
+			parsedFilters = {};
+
 			if (filter.subject) {
-				filter.subject = encodeURIComponent(filter.subject);
+				parsedFilters.subject = encodeURIComponent(filter.subject);
 			}
 
 			if (filter.sender) {
-				filter.sender = encodeURIComponent(filter.sender);
+				parsedFilters.sender = encodeURIComponent(filter.sender);
 			}
 		}
 
@@ -53,15 +70,15 @@ var linkToInbox = (function(){
 				spec.domain = 'mail.google.com';
 				spec.path = '/mail/u/0/';
 
-				if (filter) {
+				if (parsedFilters) {
 					spec.path += '#search/in%3Aanywhere';
 
-					if (filter.subject) {
-						spec.path += '+subject%3A%22' + filter.subject + '%22';
+					if (parsedFilters.subject) {
+						spec.path += '+subject%3A%22' + parsedFilters.subject + '%22';
 					}
 
-					if (filter.sender) {
-						spec.path += '+from%3A' + filter.sender;
+					if (parsedFilters.sender) {
+						spec.path += '+from%3A' + parsedFilters.sender;
 					}
 				}
 
@@ -72,11 +89,14 @@ var linkToInbox = (function(){
 				spec.domain = 'dub131.mail.live.com';
 				spec.path = '/';
 
-				if (filter) {
+				if (parsedFilters) {
 					spec.path += '?fid=flsearch&srch=1&sdr=4&satt=0';
 
-					if (filter.subject) {
-						spec.path += '&skws=' + filter.subject;
+					if (parsedFilters.subject) {
+						spec.path += '&skws=' + parsedFilters.subject;
+					}
+					else if (parsedFilters.sender) {
+						spec.path += '&skws=' + parsedFilters.sender;
 					}
 				}
 
@@ -93,8 +113,11 @@ var linkToInbox = (function(){
 		return spec;
 	}
 	
+	// Just return a value to define the module export.
+	// This example returns an object, but the module
+	// can return a function as the exported value.
 	return {
 		createLink: createLink,
 		getHref: getHref
 	}
-})();
+}));
