@@ -1,6 +1,11 @@
 # link-to-inbox
 Creates a link to the webmail inbox based on email address.
 
+## Install
+```
+npm install link-to-inbox
+```
+
 ## Usage
 
 ### Get the HTML link tag
