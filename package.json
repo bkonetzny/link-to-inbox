@@ -1,0 +1,27 @@
+{
+  "name": "link-to-inbox",
+  "version": "0.0.1",
+  "description": "Creates a link to the webmail inbox based on email address.",
+  "main": "link-to-inbox.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bkonetzny/link-to-inbox"
+  },
+  "keywords": [
+    "email",
+    "inbox",
+    "onboarding"
+  ],
+  "author": "Bastian Konetzny",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bkonetzny/link-to-inbox/issues"
+  },
+  "homepage": "https://github.com/bkonetzny/link-to-inbox"
+}
