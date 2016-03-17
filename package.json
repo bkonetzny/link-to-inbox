@@ -1,6 +1,6 @@
 {
   "name": "link-to-inbox",
-  "version": "0.0.2",
+  "version": "1.1.0",
   "description": "Creates a link to the webmail inbox based on email address.",
   "main": "link-to-inbox.js",
   "directories": {
