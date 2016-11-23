@@ -120,6 +120,7 @@
 	// can return a function as the exported value.
 	return {
 		createLink: createLink,
-		getHref: getHref
+		getHref: getHref,
+		getSpec: getSpec
 	}
 }));
