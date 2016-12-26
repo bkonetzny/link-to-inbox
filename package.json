@@ -1,6 +1,6 @@
 {
   "name": "link-to-inbox",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Creates a link to the webmail inbox based on email address.",
   "main": "link-to-inbox.js",
   "directories": {
@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "minify": "uglifyjs --compress --mangle --output link-to-inbox.min.js -- link-to-inbox.js",
+    "minify": "node_modules/uglify-js/bin/uglifyjs --compress --mangle --output link-to-inbox.min.js -- link-to-inbox.js",
     "prepublish": "npm run minify"
   },
   "repository": {
@@ -21,7 +21,7 @@
     "onboarding"
   ],
   "devDependencies" : {
-    "uglify-js": "^2.6.2"
+    "uglify-js": "^2.7.5"
   },
   "author": "Bastian Konetzny",
   "license": "MIT",

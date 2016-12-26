@@ -1,3 +1,7 @@
+### v1.2.0 (2016-12-26):
+
+* Exposed `getSpec` method.
+
 ### v1.1.0 (2016-03-17):
 
 * Added support for hotmail.com and outlook.com.
