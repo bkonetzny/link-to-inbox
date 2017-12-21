@@ -18,13 +18,13 @@ var link = linkToInbox.createLink('test@gmail.com');
 
 #### With filters
 ```js
-var link = linkToInbox.getHref('test@gmail.com', {subject: 'Confirm your account'});
+var link = linkToInbox.createLink('test@gmail.com', {subject: 'Confirm your account'});
 // '<a href="https://mail.google.com/mail/u/0/#search/in%3Aanywhere+subject%3A%Confirm%252520your%252520account%22" target="_blank">Check your Gmail inbox</a>'
 ```
 
 #### With custom link text
 ```js
-var link = linkToInbox.getHref('test@gmail.com', {subject: 'Confirm your account'}, 'Open in %s');
+var link = linkToInbox.createLink('test@gmail.com', {subject: 'Confirm your account'}, 'Open in %s');
 // '<a href="https://mail.google.com/mail/u/0/#search/in%3Aanywhere+subject%3A%Confirm%252520your%252520account%22" target="_blank">Open in Gmail</a>'
 ```
 
